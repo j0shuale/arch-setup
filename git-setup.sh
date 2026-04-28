@@ -10,3 +10,6 @@ ssh-keygen -t ed25519 -C "josh@joshualester.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 
+git init --bare $HOME/.myconf
+alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
+config config status.showUntrackedFiles no
