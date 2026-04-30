@@ -1,20 +1,26 @@
 todo:
 
+
+need:
+- all of system maintenance
+- firewall
+- dns security
+
 like:
 - console improvements (zsh, tab-completion, etc.)
 
-need:
-- firewall
-- enforce delay and lock user out after incorrect attempts [Security]
-- better passwords
-- all of system maintenance
-- dns security
-
 remember:
+- better passwords
 - hibernation
 - look into systemd-boot more
-- sddm on x11?
-- script creating the git dot files thing (and all of the above :))
+- make this script more unified and better
+- maybe utilize archinstall?
+
+think about:
+- snapshots/backups?
+- archinstall?
+- setting up hooks/scripts/chron-jobs to commit/push config :)
 
 notes:
 - can i ssh into live arch install to copy/paste commands? yes!
+

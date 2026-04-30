@@ -21,3 +21,6 @@ echo "Defaults pwfeedback" >> /etc/sudoers.d/10-pwfeedback
 systemctl enable sddm
 
 # reboot
+
+
+sudo localectl set-x11-keymap us pc104 dvorak

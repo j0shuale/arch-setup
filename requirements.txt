@@ -12,8 +12,8 @@ linux-firmware
 networkmanager
 openssh
 plasma-desktop
+plasma-login-manager
 plasma-nm
 plasma-pa
-sddm
 sudo
 vim
