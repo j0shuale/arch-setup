@@ -3,7 +3,6 @@ todo:
 
 need:
 - all of system maintenance
-- firewall
 - dns security
 
 like:
