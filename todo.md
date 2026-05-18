@@ -4,6 +4,7 @@ todo:
 need:
 - all of system maintenance
 - dns security
+- zsh? and tab completion, etc.
 
 like:
 - console improvements (zsh, tab-completion, etc.)
@@ -13,11 +14,9 @@ remember:
 - hibernation
 - look into systemd-boot more
 - make this script more unified and better
-- maybe utilize archinstall?
 
 think about:
 - snapshots/backups?
-- archinstall?
 - setting up hooks/scripts/chron-jobs to commit/push config :)
 
 notes:
