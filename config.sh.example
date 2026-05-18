@@ -1,0 +1,49 @@
+#!/bin/bash
+# Arch Linux Install Configuration
+# Copy this file to config.sh and fill in your values.
+# config.sh is gitignored — NEVER commit it.
+
+# ---------------------------------------------------------------------------
+# Drive
+# ---------------------------------------------------------------------------
+# Target block device. Check with: lsblk
+# Examples: /dev/nvme0n1  /dev/sda
+DRIVE="/dev/nvme0n1"
+
+# ---------------------------------------------------------------------------
+# Partition sizes
+# ---------------------------------------------------------------------------
+EFI_SIZE="1G"
+SWAP_SIZE="16G"   # Set to your RAM size to support hibernation
+
+# ---------------------------------------------------------------------------
+# System identity
+# ---------------------------------------------------------------------------
+HOSTNAME="myhostname"
+USERNAME="myuser"
+TIMEZONE="US/Pacific"     # Path under /usr/share/zoneinfo/
+LOCALE="en_US.UTF-8"
+KEYMAP="us"               # Keyboard map, e.g. us, dvorak, fr
+
+# ---------------------------------------------------------------------------
+# Hardware / software profiles
+# ---------------------------------------------------------------------------
+# Space-separated list of profiles to install.
+# Available profiles (files in profiles/):
+#   base                — always required
+#   intel-laptop        — Intel CPU + integrated graphics
+#   amd-nvidia-desktop  — AMD CPU + NVIDIA GPU
+#   kde-plasma          — KDE Plasma desktop environment
+#   gaming              — Steam, gamemode, tools
+#   audio-production    — ALSA tools, PipeWire GUIs
+#
+# Example combinations:
+#   Intel laptop + KDE:        "base intel-laptop kde-plasma"
+#   AMD desktop + KDE + games: "base amd-nvidia-desktop kde-plasma gaming"
+PROFILES="base intel-laptop kde-plasma"
+
+# ---------------------------------------------------------------------------
+# Git identity (used in Phase 3)
+# ---------------------------------------------------------------------------
+GIT_NAME="Your Name"
+GIT_EMAIL="you@example.com"

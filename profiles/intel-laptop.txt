@@ -1,0 +1,2 @@
+# Intel CPU + integrated graphics
+intel-ucode

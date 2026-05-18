@@ -1,0 +1,11 @@
+# KDE Plasma desktop environment
+plasma-desktop
+sddm
+plasma-nm
+plasma-pa
+kscreen
+powerdevil
+dolphin
+konsole
+firefox
+code

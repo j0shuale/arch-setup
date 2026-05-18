@@ -1,0 +1,5 @@
+# Audio production — ALSA tools, PipeWire GUIs
+alsa-utils
+pavucontrol
+qpwgraph
+# Note: alsa-scarlett-gui is AUR — install manually or via yay after boot

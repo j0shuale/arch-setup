@@ -1,0 +1,12 @@
+# Gaming — Steam, gamemode, performance tools
+steam
+gamemode
+lib32-gamemode
+mangohud
+protontricks
+prismlauncher
+discord
+speedtest-cli
+sysbench
+memtester
+# Note: spotify-launcher is AUR — install manually or via yay after boot

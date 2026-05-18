@@ -1,0 +1,15 @@
+# Base packages — always installed regardless of hardware/DE profile
+base
+base-devel
+linux
+linux-firmware
+linux-headers
+networkmanager
+openssh
+sudo
+vim
+less
+git
+btop
+unzip
+ufw
