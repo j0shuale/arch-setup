@@ -1,0 +1,13 @@
+aconfmgr-git
+antigravity
+brightness-controller-git
+flaresolverr-bin
+kcc
+mcomix
+mssql-tools
+nordvpn-bin
+suwayomi-server-preview-bin
+visual-studio-code-bin
+yay
+yay-debug
+zoom
