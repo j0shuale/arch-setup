@@ -72,3 +72,4 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 # now is the time i chroot into the system. i'm copying this over.
 # you might have to do arch-chroot -S. mine wasn't able to recognize the systemd-boot loader. i had to redo things and i'm not exactly sure why
+arch-chroot -S /mnt

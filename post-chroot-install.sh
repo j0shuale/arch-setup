@@ -21,8 +21,9 @@ echo "freyja" > /etc/hostname
 passwd
 
 # before you do this, you should probably modify /etc/fstab 's boot entry to change fmask and dmask to 0077 instead of 0022 for security purposes. look into this/why?
+mkinitcpio -P
 bootctl install
-UUID=lsblk -dno UUID /dev/nvme0n1p3
+UUID=$(lsblk -dno UUID /dev/nvme0n1p3)
 cat <<EOF > /boot/loader/loader.conf
 default arch.conf
 timeout 4
@@ -35,7 +36,7 @@ title Arch Linux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
-options root=UUID=GET-UUID rw
+options root=UUID=$UUID rw
 EOF
 
 
