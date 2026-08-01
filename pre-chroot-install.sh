@@ -1,9 +1,16 @@
 #!/bin/bash
+# Run this FIRST, from the live Arch ISO (as root).
+# It partitions/formats the drive, installs the base system, then
+# chains directly into post-chroot-install.sh inside arch-chroot.
 
-set -e
+set -euo pipefail
 
-# set dvorak and change font to bigger
-loadkeys dvorak
+# Resolve repo dir so this works regardless of cwd.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/vars.sh"
+
+# set dvorak and big-up font
+loadkeys $KEYMAP
 setfont ter-132b
 
 # if the following is 64, it's 64 bit UEFI
@@ -18,15 +25,20 @@ rfkill
 
 
 # connect to internet
-
-iwctl --passphrase "password" station wlan0 connect "network-name"
+read -rsp "Wifi SSID: " WIFI_SSID
+echo
+read -rsp "Wifi passphrase for '$WIFI_SSID': " WIFI_PASSPHRASE
+echo
+iwctl --passphrase "$WIFI_PASSPHRASE" station wlan0 connect "$WIFI_SSID"
 timedatectl
 
 # partitioning
+echo "Partitioning $DRIVE... (this WIPES the drive)"
 
-DRIVE="/dev/nvme0n1"
-
-echo "Partitioning $DRIVE..."
+# Remove any leftover filesystem/partition-table signatures from a previous
+# install. Without this, fdisk stops to ask "remove the ext4/swap signature?"
+# for each old partition, which desyncs the heredoc below and breaks it.
+wipefs --all --force "$DRIVE"
 
 fdisk "$DRIVE" <<EOF
 g
@@ -39,7 +51,7 @@ t
 n
 
 
-+16G
++$SWAPSIZE
 t
 19
 n
@@ -54,13 +66,13 @@ EOF
 # then a Linux filesystem partition of the rest.
 
 # format
-mkfs.ext4 /dev/nvme0n1p3
-mkswap /dev/nvme0n1p2
-mkfs.fat -F 32 /dev/nvme0n1p1
+mkfs.ext4 "$P3"
+mkswap "$P2"
+mkfs.fat -F 32 "$P1"
 # mount
-mount /dev/nvme0n1p3 /mnt
-mount --mkdir /dev/nvme0n1p1 /mnt/boot
-swapon /dev/nvme0n1p2
+mount "$P3" /mnt
+mount --mkdir "$P1" /mnt/boot
+swapon "$P2"
 
 
 # installation
@@ -70,6 +82,16 @@ pacstrap -K /mnt base linux linux-firmware vim networkmanager intel-ucode
 # genfstab
 genfstab -U /mnt >> /mnt/etc/fstab
 
-# now is the time i chroot into the system. i'm copying this over.
-# you might have to do arch-chroot -S. mine wasn't able to recognize the systemd-boot loader. i had to redo things and i'm not exactly sure why
-arch-chroot -S /mnt
+# Harden the EFI partition mount: only root can read /boot.
+sed -i '/\/boot/ s/fmask=0022/fmask=0077/; /\/boot/ s/dmask=0022/dmask=0077/' /mnt/etc/fstab
+
+# Copy the repo into the new system so post-chroot + first-boot scripts are available.
+mkdir -p /mnt/root/arch-setup
+cp -r "$SCRIPT_DIR/." /mnt/root/arch-setup/
+
+# Chain straight into the chroot phase — no manual arch-chroot needed.
+arch-chroot -S /mnt /root/arch-setup/post-chroot-install.sh
+
+echo
+echo "Base install + chroot config complete."
+echo "Now: reboot, remove the ISO, log in, then run: /root/arch-setup/install.sh"

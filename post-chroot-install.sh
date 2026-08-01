@@ -1,29 +1,36 @@
 #!/bin/bash
+# Runs INSIDE arch-chroot (invoked automatically by pre-chroot-install.sh).
 
-set -e
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/vars.sh"
+
+ROOT_PART="$P3"
 
 # random locale/time stuff
-ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
+ln -sf "/usr/share/zoneinfo/$TIMEZONE" /etc/localtime
 
 hwclock --systohc
 
-sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+sed -i "s/^#${LOCALE} UTF-8/${LOCALE} UTF-8/" /etc/locale.gen
 
 locale-gen
 
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
+echo "LANG=$LOCALE" > /etc/locale.conf
 
-echo "KEYMAP=dvorak" >> /etc/vconsole.conf
+echo "KEYMAP=$KEYMAP" > /etc/vconsole.conf
 
-echo "freyja" > /etc/hostname
+echo "$HOSTNAME" > /etc/hostname
 
-# set up password (i think for root)
+# Set the root password.
+echo "Set the root password:"
 passwd
 
-# before you do this, you should probably modify /etc/fstab 's boot entry to change fmask and dmask to 0077 instead of 0022 for security purposes. look into this/why?
+# The EFI mount is already hardened in fstab by pre-chroot (fmask/dmask 0077).
 mkinitcpio -P
 bootctl install
-UUID=$(lsblk -dno UUID /dev/nvme0n1p3)
+UUID=$(lsblk -dno UUID "$ROOT_PART")
 cat <<EOF > /boot/loader/loader.conf
 default arch.conf
 timeout 4
