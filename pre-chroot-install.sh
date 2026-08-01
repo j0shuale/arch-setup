@@ -64,6 +64,7 @@ n
 
 +$SWAPSIZE
 t
+2
 19
 n
 
