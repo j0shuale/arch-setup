@@ -4,6 +4,12 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Log everything (stdout + stderr) to a timestamped file, while still showing it live.
+mkdir -p "$SCRIPT_DIR/logs"
+LOG_FILE="$SCRIPT_DIR/logs/post-chroot-install-$(date +%Y%m%d-%H%M%S).log"
+exec > >(tee -a "$LOG_FILE") 2>&1
+
 source "$SCRIPT_DIR/vars.sh"
 
 ROOT_PART="$P3"
