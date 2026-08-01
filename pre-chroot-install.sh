@@ -25,10 +25,15 @@ rfkill
 
 
 # connect to internet
-read -rsp "Wifi SSID: " WIFI_SSID
-echo
-read -rsp "Wifi passphrase for '$WIFI_SSID': " WIFI_PASSPHRASE
-echo
+
+if [[ -z "${WIFI_SSID:-}" ]]; then
+	read -rsp "Wifi SSID: " WIFI_SSID
+	echo
+fi
+if [[ -z "${WIFI_PASSPHRASE:-}" ]]; then
+	read -rsp "Wifi passphrase for '$WIFI_SSID': " WIFI_PASSPHRASE
+	echo
+fi
 iwctl --passphrase "$WIFI_PASSPHRASE" station wlan0 connect "$WIFI_SSID"
 timedatectl
 

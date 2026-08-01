@@ -1,3 +1,6 @@
+WIFI_SSID=""
+WIFI_PASSPHRASE=""
+
 DRIVE="/dev/nvme0n1"
 PART_PREFIX="p"
 
