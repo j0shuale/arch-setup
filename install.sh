@@ -28,9 +28,9 @@ echo
 read -rsp "Wifi passphrase for '$WIFI_SSID': " WIFI_PASSPHRASE
 echo
 if [[ -z "${WIFI_PASSPHRASE:-}" ]]; then
-	nmcli d wifi connect "$WIFI_SSID" --ask
+	nmcli --ask d wifi connect "$WIFI_SSID"
 else
-	nmcli d wifi connect "$WIFI_SSID" --password "$WIFI_PASSPHRASE"
+	nmcli d wifi connect "$WIFI_SSID" password "$WIFI_PASSPHRASE"
 fi
 
 # install pacman stuff (maybe change to pull my main overall list)
