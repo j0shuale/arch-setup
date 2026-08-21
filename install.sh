@@ -55,7 +55,7 @@ localectl set-x11-keymap us pc104 $KEYMAP
 # per-user setup, run AS the user: generates the ssh key, then clones the
 # dotfiles bare repo into ~/dotfiles and checks it out into $HOME. Needs the
 # network (connected above) since it pulls from GitHub.
-runuser -u "$USERNAME" -- bash "$SCRIPT_DIR/scripts/git-setup.sh"
+runuser -u "$USERNAME" -- bash -s < "$SCRIPT_DIR/scripts/git-setup.sh"
 
 echo
 echo "First-boot setup complete. Reboot to start Plasma."
