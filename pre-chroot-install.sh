@@ -82,26 +82,30 @@ n
 w
 EOF
 else
-	# GPT on a BIOS machine: GRUB needs a tiny unformatted "BIOS boot"
-	# partition (type 4) to embed its core image, since there's no ESP.
-	# p1 = 1M BIOS boot, p2 = swap (type 19), p3 = root (rest). /boot lives
-	# on the root filesystem.
+	# Old BIOS firmware often refuses to boot a GPT-labelled disk in legacy
+	# mode, so use an MBR/msdos table instead. GRUB embeds core.img in the
+	# ~1M gap before the first partition — no BIOS-boot partition required.
+	# Layout mirrors the UEFI numbering so vars.sh/post-chroot stay shared:
+	#   p1 = 1M reserved placeholder (unused, keeps swap=p2/root=p3)
+	#   p2 = swap  (type 82)
+	#   p3 = root  (rest, type 83)
 	fdisk "$DRIVE" <<EOF
-g
+o
 n
+p
 
 
 +1M
-t
-4
 n
+p
 
 
 +$SWAPSIZE
 t
 2
-19
+82
 n
+p
 
 
 

@@ -64,7 +64,7 @@ EOF
 else
 	# BIOS/legacy: GRUB embedded into the BIOS boot partition on $DRIVE.
 	# grub-mkconfig auto-detects intel-ucode and the root UUID.
-	grub-install --target=i386-pc "$DRIVE"
+	grub-install --target=i386-pc --recheck "$DRIVE"
 	grub-mkconfig -o /boot/grub/grub.cfg
 fi
 
