@@ -65,6 +65,15 @@ else
 	# BIOS/legacy: GRUB embedded into the BIOS boot partition on $DRIVE.
 	# grub-mkconfig auto-detects intel-ucode and the root UUID.
 	grub-install --target=i386-pc --recheck "$DRIVE"
+
+	# Touchpad fix for this laptop: the i8042 controller needs these params or
+	# the PS/2 touchpad doesn't come up. Append them to GRUB_CMDLINE_LINUX_DEFAULT
+	# (inside the existing quotes) if not already present.
+	TOUCHPAD_PARAMS="i8042.nomux=1 i8042.reset=1"
+	if ! grep -q "$TOUCHPAD_PARAMS" /etc/default/grub; then
+		sed -i "s/^\(GRUB_CMDLINE_LINUX_DEFAULT=\"[^\"]*\)\"/\1 $TOUCHPAD_PARAMS\"/" /etc/default/grub
+	fi
+
 	grub-mkconfig -o /boot/grub/grub.cfg
 fi
 
