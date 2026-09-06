@@ -1,0 +1,15 @@
+base
+base-devel
+cage
+firefox
+foot
+git
+intel-ucode
+less
+linux
+linux-firmware
+neovim
+networkmanager
+openssh
+ufw
+zsh
