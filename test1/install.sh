@@ -33,4 +33,5 @@ passwd -l root
 
 runuser -u "$USERNAME" -- bash -s < "$SCRIPT_DIR/git-setup.sh"
 
+echo "config complete. feel free to reboot."
 
