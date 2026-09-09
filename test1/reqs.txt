@@ -1,8 +1,6 @@
 base
 base-devel
-cage
 firefox
-foot
 git
 intel-ucode
 less
