@@ -32,6 +32,7 @@ visudo -cf "$SUDOERS_FILE"
 passwd -l root
 
 runuser -u "$USERNAME" -- bash -s < "$SCRIPT_DIR/git-setup.sh"
+localectl set-x11-keymap us pc104 $KEYMAP
 
 echo "config complete. feel free to reboot."
 
