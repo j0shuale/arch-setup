@@ -4,4 +4,4 @@ dolphin
 pipewire
 pipewire-pulse
 pipewire-alsa
-sddm
+plasma-login-manager
