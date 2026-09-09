@@ -33,6 +33,7 @@ passwd -l root
 
 runuser -u "$USERNAME" -- bash -s < "$SCRIPT_DIR/git-setup.sh"
 localectl set-x11-keymap us pc104 $KEYMAP
+localectl set-keymap dvorak
 
 echo "config complete. feel free to reboot."
 
