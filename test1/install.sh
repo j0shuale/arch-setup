@@ -17,6 +17,9 @@ nmcli --ask d wifi connect "$WIFI_SSID"
 
 pacman -S --needed --noconfirm $(<"$SCRIPT_DIR/test1/reqs.txt")
 
+# plasma things..
+pacman -S --needed --noconfirm $(<"$SCRIPT_DIR/test1/plasma-reqs.txt")
+
 systemctl enable --now ufw.service
 ufw default deny incoming
 ufw default allow outgoing

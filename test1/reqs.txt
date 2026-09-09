@@ -11,5 +11,6 @@ linux-firmware
 neovim
 networkmanager
 openssh
+sudo
 ufw
 zsh

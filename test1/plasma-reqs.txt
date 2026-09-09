@@ -1,0 +1,7 @@
+plasma-desktop
+konsole
+dolphin
+pipewire
+pipewire-pulse
+pipewire-alsa
+sddm
