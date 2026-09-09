@@ -52,5 +52,5 @@ sed -i '/\/boot/ s/fmask=0022/fmask=0077/; /\/boot/ s/dmask=0022/dmask=0077/' /m
 mkdir -p /mnt/root/arch-setup
 cp -r "$SCRIPT_DIR/." /mnt/root/arch-setup/
 
-arch-chroot -S /mnt /root/arch-setup/post-chroot-install.sh
+arch-chroot -S /mnt /root/arch-setup/test1/post.sh
 
