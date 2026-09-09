@@ -26,10 +26,3 @@ USERNAME="joshu"
 
 SWAPSIZE="32G"  # should be at least as big as RAM for hibernation
 
-GIT_NAME="Joshua Lester"
-GIT_EMAIL="josh@joshualester.com"
-
-DOTFILES_DIR="$HOME/dotfiles"
-DOTFILES_HTTPS="https://github.com/j0shuale/dotfiles.git"
-DOTFILES_SSH="git@github.com:j0shuale/dotfiles.git"
-

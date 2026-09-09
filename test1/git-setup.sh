@@ -1,3 +1,10 @@
+GIT_NAME="Joshua Lester"
+GIT_EMAIL="josh@joshualester.com"
+
+DOTFILES_DIR="$HOME/dotfiles"
+DOTFILES_HTTPS="https://github.com/j0shuale/dotfiles.git"
+DOTFILES_SSH="git@github.com:j0shuale/dotfiles.git"
+
 KEY="$HOME/.ssh/id_ed25519"
 mkdir -p "$HOME/.ssh"
 chmod 700 "$HOME/.ssh"
@@ -19,3 +26,4 @@ if ! config checkout 2>/dev/null; then
 	done
 	config checkout
 fi
+
