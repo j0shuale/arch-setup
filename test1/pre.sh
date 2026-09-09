@@ -54,3 +54,6 @@ cp -r "$SCRIPT_DIR/." /mnt/root/arch-setup/
 
 arch-chroot -S /mnt /root/arch-setup/post.sh
 
+echo
+echo "Pre/post-chroot complete."
+echo "Now: reboot, remove the ISO, log in, then run: /root/arch-setup/install.sh"
