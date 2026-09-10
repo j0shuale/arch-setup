@@ -1,8 +1,10 @@
 base
 base-devel
+btop
 firefox
 git
 intel-ucode
+kubectl
 less
 linux
 linux-firmware
@@ -10,5 +12,6 @@ neovim
 networkmanager
 openssh
 sudo
+terminus-font
 ufw
 zsh

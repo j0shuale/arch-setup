@@ -1,0 +1,2 @@
+ffmpeg6.1
+kodi-addon-inputstream-ffmpegdirect

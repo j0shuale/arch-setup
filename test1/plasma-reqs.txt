@@ -1,7 +1,12 @@
+alsa-firmware
 plasma-desktop
 konsole
 dolphin
 pipewire
 pipewire-pulse
 pipewire-alsa
+pipewire-jack
 plasma-login-manager
+plasma-pa
+sof-firmware
+wl-clipboard
