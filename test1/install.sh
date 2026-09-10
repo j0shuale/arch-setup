@@ -36,6 +36,7 @@ localectl set-x11-keymap us pc104 $KEYMAP
 localectl set-keymap dvorak
 echo "FONT=ter-g24n" >> /etc/vconsole.conf
 chsh -s /usr/bin/zsh
+sudo systemctl enable --now plasmalogin
 
 echo "config complete. feel free to reboot."
 
